@@ -35,8 +35,19 @@ app.listen(PORT, () => {
 
 
 // adding user routes
-const userRoutes = require('./routes/users');
-app.use('/api/users', userRoutes);
+//const userRoutes = require('./routes/users');
+//app.use('/api/users', userRoutes);
 
 // User Routes
 app.use('/api/users', require('./routes/api/users'));
+
+
+//new addition
+const db = require('./config/db');
+const User = require('./models/User');
+
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch((err) => console.log('Error: ' + err));
+
+db.sync();
